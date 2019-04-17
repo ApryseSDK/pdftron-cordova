@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="pdftron-cordova" version="1.0.0" 
+  xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>PDFTron</name>
+  <js-module name="PDFTron" src="www/PDFTron.js">
+    <clobbers target="PDFTron" />
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="PDFTron">
+        <param name="android-package" value="com.pdftron.cordova.PDFTron" />
+      </feature>
+    </config-file>
+    <config-file parent="/*/application" target="AndroidManifest.xml" >
+      <meta-data
+          android:name="pdftron_license_key"
+          android:value="${pdftronLicenseKey}"/>
+    </config-file>
+    <config-file parent="/*/application" target="AndroidManifest.xml" >
+      <activity android:name="com.pdftron.pdf.controls.DocumentActivity"
+          android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+          android:windowSoftInputMode="adjustPan"
+          android:theme="@style/CustomAppTheme"/>
+    </config-file>
+    <source-file src="src/android/com/pdftron/cordova/PDFTron.java" target-dir="src/com/pdftron/cordova" />
+    <source-file src="src/android/com/pdftron/cordova/DocumentView.java" target-dir="src/com/pdftron/cordova" />
+    <source-file src="src/android/org/apache/cordova/CordovaAppCompatActivity.java" target-dir="src/org/apache/cordova" />
+    <framework src="src/android/pdftron.gradle" custom="true" type="gradleReference" />
+  </platform>
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="PDFTron">
+        <param name="ios-package" value="PDFTron" />
+      </feature>
+    </config-file>
+    <source-file src="src/ios/PDFTron.m" />
+    <source-file src="src/ios/PDFTron.h" />
+  </platform>
+</plugin>

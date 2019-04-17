@@ -1,0 +1,19 @@
+{
+  "name": "pdftron-cordova",
+  "version": "1.0.0",
+  "description": "PDFTron mobile SDK for Cordova.",
+  "cordova": {
+    "id": "pdftron-cordova",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "PDFTron",
+  "license": "ISC"
+}

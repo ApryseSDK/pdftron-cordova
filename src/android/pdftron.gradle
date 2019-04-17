@@ -1,0 +1,24 @@
+repositories {
+    google()
+    maven {
+        url "s3://pdftron-maven/release"
+        credentials(AwsCredentials) {
+            accessKey AWS_ACCESS_KEY
+            secretKey AWS_SECRET_KEY
+        }
+    }
+}
+
+android {
+    defaultConfig {
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [pdftronLicenseKey:PDFTRON_LICENSE_KEY]
+    }
+}
+dependencies {
+    implementation "com.pdftron:pdftron:6.10.3-beta1"
+    implementation "com.pdftron:tools:6.10.3-beta1"
+
+    implementation 'com.android.support:multidex:1.0.3'
+}
