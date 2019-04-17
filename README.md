@@ -2,7 +2,7 @@
 
 This repository contains PDFTron's native plugin for Cordova/Ionic. The plugin exposes a javascript interface for a full-featured PDF viewer and annotator with full native performance. 
 
-The plugin can be used to present the PDF viewer either in full screen or over a specified rect (<div>) defined in the HTML.
+The plugin can be used to present the PDF viewer either in full screen or over a specified rect (e.g. a &lt;div&gt;) defined in the HTML.
 
 - [Prerequisites](#pre-requisites)
 - [Preview](#preview)
