@@ -117,7 +117,15 @@
         self.topLeftButtonName = initDict[@"topLeftButtonTitle"];
         self.displayRectFromArguments = initDict[@"boundingRect"];
         
-        self.showTopLeftButton = YES;
+        if( self.displayRectFromArguments)
+        {
+            self.showTopLeftButton = NO;
+        }
+        else
+        {
+            self.showTopLeftButton = YES;
+        }
+        
         if( initDict[@"showTopLeftButton"] )
             self.showTopLeftButton = ((NSNumber*)initDict[@"showTopLeftButton"]).boolValue;
         
