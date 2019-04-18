@@ -211,9 +211,11 @@ string | false | N/A
 #### Example
 ```
 var viewerElement = document.getElementById('viewer');
+var rect = viewerElement.getBoundingClientRect();
 var viewer = new PDFTron.NativeViewer({
     l: '<your-key-here>',
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/PDFTRON_mobile_about.pdf',
+    boundingRect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
     disabledElements: [
     // hide elements as you wish
     ]
