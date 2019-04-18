@@ -41,14 +41,14 @@
             
             self.navigationController.view.superview.frame = rect;
         }
-        else if( self.viewerID )
-        {
-            NSString *js = @"function f(){ var r = document.getElementById('%@').getBoundingClientRect(); return '{{'+r.left+','+r.top+'},{'+r.width+','+r.height+'}}'; } f();";
-            NSString *result = [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:js, self.viewerID]];
-            rect = CGRectFromString(result);
-            
-            self.navigationController.view.superview.frame = rect;
-        }
+//        else if( self.viewerID )
+//        {
+//            NSString *js = @"function f(){ var r = document.getElementById('%@').getBoundingClientRect(); return '{{'+r.left+','+r.top+'},{'+r.width+','+r.height+'}}'; } f();";
+//            NSString *result = [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:js, self.viewerID]];
+//            rect = CGRectFromString(result);
+//
+//            self.navigationController.view.superview.frame = rect;
+//        }
     }
 }
 
@@ -117,7 +117,9 @@
         self.topLeftButtonName = initDict[@"topLeftButtonTitle"];
         self.displayRectFromArguments = initDict[@"boundingRect"];
         
-        self.showTopLeftButton = ((NSNumber*)initDict[@"showTopLeftButton"]).boolValue;
+        self.showTopLeftButton = YES;
+        if( initDict[@"showTopLeftButton"] )
+            self.showTopLeftButton = ((NSNumber*)initDict[@"showTopLeftButton"]).boolValue;
         
         if( command.arguments.firstObject[@"initialDoc"] )
         {
@@ -219,12 +221,12 @@
                 return;
             }
         }
-        else if( self.documentViewController.viewerID )
-        {
-            NSString *js = @"function f(){ var r = document.getElementById('%@').getBoundingClientRect(); return '{{'+r.left+','+r.top+'},{'+r.width+','+r.height+'}}'; } f();";
-            NSString *result = [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:js, viewerID]];
-            rect = CGRectFromString(result);
-        }
+//        else if( self.documentViewController.viewerID )
+//        {
+//            NSString *js = @"function f(){ var r = document.getElementById('%@').getBoundingClientRect(); return '{{'+r.left+','+r.top+'},{'+r.width+','+r.height+'}}'; } f();";
+//            NSString *result = [(UIWebView*)self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:js, viewerID]];
+//            rect = CGRectFromString(result);
+//        }
         
         UIView* containerView = [[UIView alloc] initWithFrame:rect];
         containerView.clipsToBounds = YES;
