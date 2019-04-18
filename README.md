@@ -104,6 +104,10 @@ Add a viewer div in your `index.html`:
 <body>
     <div class="app">
         <div id="viewer"></div>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
     </div>
 </body>
 ```
