@@ -92,7 +92,7 @@ The plugin can be used to present the PDF viewer either in full screen or over a
     cordova build android
     ```
 
-    Then, import `MyApp/platforms/android` folder into Android Studio, then run the project from Android Studio using the play button.
+    Then, import `MyApp/platforms/android` folder into Android Studio, and run the project from Android Studio using the play button.
 
     Note:
     When first import the project, Android Studio will complain about minSdk, click on `Move minSdkVersion to build files and sync project` in the error window to resolve.
@@ -104,6 +104,10 @@ Add a viewer div in your `index.html`:
 <body>
     <div class="app">
         <div id="viewer"></div>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
     </div>
 </body>
 ```
@@ -207,9 +211,11 @@ string | false | N/A
 #### Example
 ```
 var viewerElement = document.getElementById('viewer');
+var rect = viewerElement.getBoundingClientRect();
 var viewer = new PDFTron.NativeViewer({
     l: '<your-key-here>',
     initialDoc: 'https://pdftron.s3.amazonaws.com/downloads/pl/PDFTRON_mobile_about.pdf',
+    boundingRect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
     disabledElements: [
     // hide elements as you wish
     ]
@@ -409,6 +415,9 @@ If a `boundingRect` is defined, the viewer will be displayed on top of the web c
 ```javascript
 this.viewer.showDocumentViewer();
 ```
+
+## Contributing
+See [Contributing](./CONTRIBUTING.md)
 
 ## License
 See [License](./LICENSE)
