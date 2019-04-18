@@ -92,7 +92,7 @@ The plugin can be used to present the PDF viewer either in full screen or over a
     cordova build android
     ```
 
-    Then, import `MyApp/platforms/android` folder into Android Studio, then run the project from Android Studio using the play button.
+    Then, import `MyApp/platforms/android` folder into Android Studio, and run the project from Android Studio using the play button.
 
     Note:
     When first import the project, Android Studio will complain about minSdk, click on `Move minSdkVersion to build files and sync project` in the error window to resolve.
@@ -413,6 +413,9 @@ If a `boundingRect` is defined, the viewer will be displayed on top of the web c
 ```javascript
 this.viewer.showDocumentViewer();
 ```
+
+## Contributing
+See [Contributing](./CONTRIBUTING.md)
 
 ## License
 See [License](./LICENSE)
