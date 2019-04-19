@@ -96,9 +96,7 @@
 - (void)topLeftButtonPressed:(UIBarButtonItem *)barButtonItem
 {
     
-    if( barButtonItem.tag == UIBarButtonSystemItemDone )
-        [self.viewController.presentedViewController dismissViewControllerAnimated:YES completion:Nil];
-    
+    [self.viewController.presentedViewController dismissViewControllerAnimated:YES completion:Nil];
     
     [self callJavascriptCallback:@"topLeftButtonPressed"];
 
@@ -152,6 +150,10 @@
         {
             self.documentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.topLeftButtonName  style:UIBarButtonItemStylePlain target:self action:@selector(topLeftButtonPressed:)];
         }
+        else if( self.showTopLeftButton )
+        {
+            self.documentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(topLeftButtonPressed:)];
+        }
         
         if( viewerID && self.displayRectFromArguments)
         {
@@ -183,7 +185,6 @@
         if( self.showTopLeftButton && self.topLeftButtonName == Nil)
         {
             self.documentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(topLeftButtonPressed:)];
-            self.documentViewController.navigationItem.leftBarButtonItem.tag = UIBarButtonSystemItemDone;
         }
         
         if( self.displayRectFromArguments == Nil )
