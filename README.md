@@ -266,7 +266,7 @@ array of string| true | N/A
 this.viewer.disableElements([ 'searchButton', 'lineToolButton' ]);
 ```
 
-## disableTools(toolNames)
+### disableTools(toolNames)
 
 Disable multiple tools.
 
