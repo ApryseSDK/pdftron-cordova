@@ -13,7 +13,6 @@ The plugin can be used to present the PDF viewer either in full screen or over a
 
 ## Pre-requisites
 - A valid evaluation or commercial license key. If you do not have a license key, click [here](https://www.pdftron.com/documentation/ios/guides/cordova-ionic/?showkey=true) to get an evaluation key.
-- PDFTron gradle credentials that comes with your license key (Android)
 - The current version of the PDFTron SDK
 
 ## Preview
@@ -66,11 +65,9 @@ The plugin can be used to present the PDF viewer either in full screen or over a
 
 ### Android
 
-1. Add your PDFTron license key and credentials to `MyApp/platforms/android/gradle.properties` file.
+1. Add your PDFTron license key to `MyApp/platforms/android/gradle.properties` file.
 
     ```
-    AWS_ACCESS_KEY=YOUR_ACCESS_KEY_GOES_HERE
-    AWS_SECRET_KEY=YOUR_SECRET_KEY_GOES_HERE
     PDFTRON_LICENSE_KEY=YOUR_PDFTRON_LICENSE_KEY
     ```
 
