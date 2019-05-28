@@ -33,7 +33,12 @@ The plugin can be used to present the PDF viewer either in full screen or over a
     cordova plugin add https://github.com:PDFTron/pdftron-cordova.git
     ```
 
-3. Follow platform specific steps
+3. Call the following two lines to add the iOS and Android platforms:
+    ```
+    cordova platform add ios
+    cordova platform add android
+    ```
+4. Follow the platform specific steps below.
 
 ### iOS
 
@@ -83,19 +88,20 @@ The plugin can be used to present the PDF viewer either in full screen or over a
     -<activity android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" >
     +<activity android:name="MainActivity" android:theme="@style/CustomAppTheme" >
     ```
+4. Add the following code to `index.html` and `index.js` as described [here](#usage).
 
-4. Due to the change of `MainActivity` base class, use the following to build and run the project instead:
+5. After the changes, you will need to call the following to build and run the project:
 
-    First, in `MyApp` directory:
+    First, in `MyApp` directory call:
 
     ```bash
     cordova build android
     ```
 
-    Then, import `MyApp/platforms/android` folder into Android Studio, and run the project from Android Studio using the play button.
+    Then import the `MyApp/platforms/android` folder into Android Studio, and run the project from Android Studio using the play button. You will see a message that says `No Java files found that extend CordovaActivity.` . This message is okay to ignore since we're using CordovaAppCompatActivity.
 
-    Note:
-    When first import the project, Android Studio will complain about minSdk, click on `Move minSdkVersion to build files and sync project` in the error window to resolve.
+    **Note:**
+    When the project is first imported, Android Studio will complain about the minSdk. To resolve this, click `Move minSdkVersion to build files and sync project` in the error window.
 
 ## Usage
 
