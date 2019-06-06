@@ -12,7 +12,7 @@ The plugin can be used to present the PDF viewer either in full screen or over a
 - [License](#license)
 
 ## Pre-requisites
-- A valid evaluation or commercial license key. If you do not have a license key, click [here](https://www.pdftron.com/documentation/ios/guides/cordova-ionic/?showkey=true) to get an evaluation key.
+- No license key is requird for trial. However, a valid commercial license key is required after trial.
 - The current version of the PDFTron SDK
 
 ## Preview
@@ -68,7 +68,7 @@ The plugin can be used to present the PDF viewer either in full screen or over a
 1. Add your PDFTron license key to `MyApp/platforms/android/gradle.properties` file.
 
     ```
-    PDFTRON_LICENSE_KEY=YOUR_PDFTRON_LICENSE_KEY
+    PDFTRON_LICENSE_KEY=INSERT_COMMERCIAL_LICENSE_KEY_HERE_AFTER_PURCHASE
     ```
 
 2. Open `MyApp/platforms/android/app/src/main/java/com/example/myapp/MainActivity.java`, and change the base class to `CordovaAppCompatActivity`:
