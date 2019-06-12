@@ -185,10 +185,10 @@ public class PDFTron extends CordovaPlugin {
                     String rect = options.getString(Key_boundingRect);
                     Log.d("cordova", "boundingRect: " + rect);
                     JSONObject rectObject = new JSONObject(rect);
-                    int left = Integer.parseInt(rectObject.getString("left"));
-                    int top = Integer.parseInt(rectObject.getString("top"));
-                    int width = Integer.parseInt(rectObject.getString("width"));
-                    int height = Integer.parseInt(rectObject.getString("height"));
+                    int left = (int) Float.parseFloat(rectObject.getString("left"));
+                    int top = (int) Float.parseFloat(rectObject.getString("top"));
+                    int width = (int) Float.parseFloat(rectObject.getString("width"));
+                    int height = (int) Float.parseFloat(rectObject.getString("height"));
                     mDocumentView.setRect((int) Utils.convDp2Pix(cordova.getContext(), left),
                             (int) Utils.convDp2Pix(cordova.getContext(), top),
                             (int) Utils.convDp2Pix(cordova.getContext(), width),
