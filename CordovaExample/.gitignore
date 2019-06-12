@@ -1,2 +1,3 @@
 # App platform binaries and built files
 /platforms
+/node_modules
