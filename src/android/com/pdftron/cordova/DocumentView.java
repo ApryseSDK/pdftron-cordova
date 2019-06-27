@@ -48,6 +48,10 @@ public class DocumentView extends com.pdftron.pdf.controls.DocumentView {
         this.height = h;
     }
 
+    public boolean isUseCustomRect() {
+        return useCustomRect;
+    }
+
     @Override
     public void onNavButtonPressed() {
         boolean handled = false;

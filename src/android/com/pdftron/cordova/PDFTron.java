@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import com.pdftron.common.PDFNetException;
 import com.pdftron.pdf.config.ToolManagerBuilder;
 import com.pdftron.pdf.config.ViewerConfig;
+import com.pdftron.pdf.controls.DocumentActivity;
 import com.pdftron.pdf.controls.PdfViewCtrlTabFragment;
 import com.pdftron.pdf.tools.ToolManager;
 import com.pdftron.pdf.utils.Utils;
@@ -234,20 +235,25 @@ public class PDFTron extends CordovaPlugin {
         if (mDocumentView == null) {
             return;
         }
-        mDocumentView.setVisibility(View.VISIBLE);
-        if (mDocumentView.getParent() != null) {
-            return;
-        }
-        mDocumentView.setViewerConfig(getConfig());
-        if (webView.getView() instanceof WebView) {
-            WebView wv = (WebView) webView.getView();
-            if (wv.getParent() != null && wv.getParent() instanceof ViewGroup) {
-                ((ViewGroup) wv.getParent()).addView(mDocumentView);
+        if (mDocumentView.isUseCustomRect()) {
+            mDocumentView.setVisibility(View.VISIBLE);
+            if (mDocumentView.getParent() != null) {
+                return;
+            }
+            mDocumentView.setViewerConfig(getConfig());
+            if (webView.getView() instanceof WebView) {
+                WebView wv = (WebView) webView.getView();
+                if (wv.getParent() != null && wv.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) wv.getParent()).addView(mDocumentView);
+                } else {
+                    wv.addView(mDocumentView);
+                }
             } else {
-                wv.addView(mDocumentView);
+                throw new PDFNetException("CordovaWebView is not instanceof WebView", -1, "PDFTron.java", "attachDocumentViewerImpl", "Unable to add viewer.");
             }
         } else {
-            throw new PDFNetException("CordovaWebView is not instanceof WebView", -1, "PDFTron.java", "attachDocumentViewerImpl", "Unable to add viewer.");
+            // simply launch the activity
+            DocumentActivity.openDocument(cordova.getActivity(), mDocumentView.mDocumentUri, mDocumentView.mPassword, getConfig());
         }
     }
 
