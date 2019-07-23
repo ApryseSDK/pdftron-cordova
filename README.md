@@ -41,7 +41,7 @@ The plugin can be used to present the PDF viewer either in full screen or over a
 
 ### iOS
 
-1. Download the PDFTron iOS SDK, [available here](https://www.pdftron.com/documentation/ios/guides/getting-started/integrate-manual).
+1. Download the PDFTron iOS SDK, [available here](https://www.pdftron.com/documentation/ios/get-started/integration/manually).
 
 2. Open the .dmg, and copy the `/Lib` directory to an appropriate location for your project.
 
