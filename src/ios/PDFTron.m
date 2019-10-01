@@ -190,6 +190,7 @@
         if( self.displayRectFromArguments == Nil )
         {
             self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.documentViewController];
+            self.navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
             [self.viewController presentViewController:self.navigationController animated:YES completion:nil];
         }
         else
