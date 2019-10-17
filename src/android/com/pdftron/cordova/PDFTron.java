@@ -286,6 +286,16 @@ public class PDFTron extends CordovaPlugin {
                         .showUserBookmarksList(false);
             } else if ("thumbnailSlider".equals(item)) {
                 mBuilder = mBuilder.showBottomNavBar(false);
+            } else if ("editPagesButton".equals(item)) {
+                mBuilder = mBuilder.showEditPagesOption(false);
+            } else if ("printButton".equals(item)) {
+                mBuilder = mBuilder.showPrintOption(false);
+            } else if ("closeButton".equals(item)) {
+                mBuilder = mBuilder.showCloseTabOption(false);
+            } else if ("saveCopyButton".equals(item)) {
+                mBuilder = mBuilder.showSaveCopyOption(false);
+            } else if ("formToolsButton".equals(item)) {
+                mBuilder = mBuilder.showFormToolbarOption(false);
             }
         }
         disableTools(args);

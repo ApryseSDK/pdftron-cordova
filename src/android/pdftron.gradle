@@ -1,7 +1,7 @@
 repositories {
     google()
     maven {
-        url "https://pdftron-maven.s3.amazonaws.com/release"
+        url "https://pdftron-maven.s3.amazonaws.com/snapshot"
     }
 }
 
@@ -13,8 +13,8 @@ android {
     }
 }
 dependencies {
-    implementation "com.pdftron:pdftron:7.0.2"
-    implementation "com.pdftron:tools:7.0.2"
+    implementation "com.pdftron:pdftron:7.0.3-beta4"
+    implementation "com.pdftron:tools:7.0.3-beta4"
 
     implementation 'com.android.support:multidex:1.0.3'
 }
