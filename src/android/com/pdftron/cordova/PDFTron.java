@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.pdftron.common.PDFNetException;
+import com.pdftron.pdf.PDFViewCtrl;
 import com.pdftron.pdf.config.ToolManagerBuilder;
 import com.pdftron.pdf.config.ViewerConfig;
 import com.pdftron.pdf.controls.DocumentActivity;
@@ -52,6 +53,7 @@ public class PDFTron extends CordovaPlugin {
     public static final String Key_enableTools = "enableTools";
     public static final String Key_disableTools = "disableTools";
     public static final String Key_setToolMode = "setToolMode";
+    public static final String Key_setPagePresentationMode = "setPagePresentationMode";
     public static final String Key_loadDocument = "loadDocument";
     public static final String Key_NativeViewer = "NativeViewer";
 
@@ -106,6 +108,9 @@ public class PDFTron extends CordovaPlugin {
             return true;
         } else if (Key_setToolMode.equals(action)) {
             setToolMode(args.getString(0), callbackContext);
+            return true;
+        } else if (Key_setPagePresentationMode.equals(action)) {
+            setPagePresentationMode(args.getString(0), callbackContext);
             return true;
         } else if (Key_loadDocument.equals(action)) {
             loadDocument(args.getString(0), callbackContext);
@@ -235,7 +240,7 @@ public class PDFTron extends CordovaPlugin {
         if (mDocumentView == null) {
             return;
         }
-        if (mDocumentView.isUseCustomRect()) {
+//        if (mDocumentView.isUseCustomRect()) {
             mDocumentView.setVisibility(View.VISIBLE);
             if (mDocumentView.getParent() != null) {
                 return;
@@ -251,10 +256,10 @@ public class PDFTron extends CordovaPlugin {
             } else {
                 throw new PDFNetException("CordovaWebView is not instanceof WebView", -1, "PDFTron.java", "attachDocumentViewerImpl", "Unable to add viewer.");
             }
-        } else {
-            // simply launch the activity
-            DocumentActivity.openDocument(cordova.getActivity(), mDocumentView.mDocumentUri, mDocumentView.mPassword, getConfig());
-        }
+//        } else {
+//            // simply launch the activity
+//            DocumentActivity.openDocument(cordova.getActivity(), mDocumentView.mDocumentUri, mDocumentView.mPassword, getConfig());
+//        }
     }
 
     private void disableElements(JSONArray args, CallbackContext callbackContext) {
@@ -299,6 +304,24 @@ public class PDFTron extends CordovaPlugin {
             }
         }
         disableTools(args);
+    }
+
+    private PDFViewCtrl.PagePresentationMode convStringToPagePresentationMode(String item) {
+        PDFViewCtrl.PagePresentationMode mode = null;
+        if ("SinglePage".equals(item)) {
+            mode = PDFViewCtrl.PagePresentationMode.SINGLE;
+        } else if ("SingleContinous".equals(item)) {
+            mode = PDFViewCtrl.PagePresentationMode.SINGLE_CONT;
+        } else if ("Facing".equals(item)) {
+            mode = PDFViewCtrl.PagePresentationMode.FACING;
+        } else if ("FacingContinous".equals(item)) {
+            mode = PDFViewCtrl.PagePresentationMode.FACING_CONT;
+        } else if ("FacingCover".equals(item)) {
+            mode = PDFViewCtrl.PagePresentationMode.FACING_COVER;
+        } else if ("FacingContinousCover".equals(item)) {
+            mode = PDFViewCtrl.PagePresentationMode.FACING_COVER_CONT;
+        }
+        return mode;
     }
 
     private ToolManager.ToolMode convStringToToolMode(String item) {
@@ -422,6 +445,25 @@ public class PDFTron extends CordovaPlugin {
             }
             if (!success) {
                 callbackContext.error("setToolMode to " + toolMode + " failed.");
+            }
+        } else {
+            callbackContext.error("Viewer is not ready yet.");
+        }
+    }
+
+    private void setPagePresentationMode(String presentationMode, CallbackContext callbackContext) {
+        if (mDocumentView.mPdfViewCtrlTabHostFragment != null && mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment() != null) {
+            boolean success = false;
+            PDFViewCtrl pdfViewCtrl = mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().getPDFViewCtrl();
+            if (pdfViewCtrl != null) {
+                PDFViewCtrl.PagePresentationMode mode = convStringToPagePresentationMode(presentationMode);
+                if (mode != null) {
+                    pdfViewCtrl.setPagePresentationMode(mode);
+                    success = true;
+                }
+            }
+            if (!success) {
+                callbackContext.error("setPagePresentationMode to " + presentationMode + " failed.");
             }
         } else {
             callbackContext.error("Viewer is not ready yet.");
