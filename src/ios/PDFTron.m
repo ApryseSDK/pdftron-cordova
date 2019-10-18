@@ -652,6 +652,8 @@
     {
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:self.documentViewController.openCommandCallbackID];
     }
+    
+    [self callJavascriptCallback:@"documentLoaded"];
 }
 
 -(void)documentViewController:(PTDocumentViewController *)documentViewController didFailToOpenDocumentWithError:(NSError *)error
