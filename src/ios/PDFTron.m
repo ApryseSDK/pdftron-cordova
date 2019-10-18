@@ -580,27 +580,27 @@
         NSDictionary *setPagePresentationModeActions = @{
                                          @"SinglePage":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_single_page];
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_single_page];
                                              },
                                          @"SingleContinous":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_single_continuous];
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_single_continuous];
                                              },
                                          @"Facing":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing];
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing];
                                              },
                                          @"FacingContinous":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing_continuous;
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_continuous;
                                              },
                                          @"FacingCover":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing_cover];
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_cover];
                                              },
                                          @"FacingContinousCover":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing_continuous_cover];
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_continuous_cover];
                                              }
                                          };
         
