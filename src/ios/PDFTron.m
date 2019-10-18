@@ -566,6 +566,63 @@
     }
 }
 
+-(void)setPagePresentationMode:(CDVInvokedUrlCommand*)command
+{
+    
+    @try {
+        
+        NSArray* stringsArray = command.arguments;
+
+        
+        typedef void (^SetPagePresentationModeBlock)(void);
+        
+        
+        NSDictionary *setPagePresentationModeActions = @{
+                                         @"SinglePage":
+                                             ^{
+                                                 [self.documentViewController.toolManager changeTool:[PTStickyNoteCreate class]];
+                                             },
+                                         @"SingleContinous":
+                                             ^{
+                                                 [self.documentViewController.toolManager changeTool:[PTFreeHandCreate class]];
+                                             },
+                                         @"Facing":
+                                             ^{
+                                                 [self.documentViewController.toolManager changeTool:[PTAnnotEditTool class]];
+                                             },
+                                         @"FacingContinous":
+                                             ^{
+                                                 [self.documentViewController.toolManager changeTool:[PTPanTool class]];
+                                             },
+                                         @"FacingCover":
+                                             ^{
+                                                 [self.documentViewController.toolManager changeTool:[PTTextHighlightCreate class]];
+                                             },
+                                         @"FacingContinousCover":
+                                             ^{
+                                                 [self.documentViewController.toolManager changeTool:[PTTextUnderlineCreate class]];
+                                             }
+                                         };
+        
+        
+        for(NSObject* item in stringsArray)
+        {
+            if( [item isKindOfClass:[NSString class]])
+            {
+                SetPagePresentationModeBlock block = setToolActions[item];
+                if (block)
+                {
+                    block();
+                }
+            }
+        }
+        
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+    } @catch (NSException *exception) {
+        [self sendErrorFromException:exception toCallbackId:command.callbackId];
+    }
+}
+
 -(void)messageChannel:(CDVInvokedUrlCommand*)command
 {
     self.javascriptCallbackBridge = command;

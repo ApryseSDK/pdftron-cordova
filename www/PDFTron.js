@@ -53,6 +53,10 @@ NativeViewer.prototype.setToolMode = function (arguments, success, error) {
   exec(success, error, 'PDFTron', 'setToolMode', [arguments]);
 };
 
+NativeViewer.prototype.setPagePresentationMode = function (arguments, success, error) {
+  exec(success, error, 'PDFTron', 'setPagePresentationMode', [arguments]);
+};
+
 NativeViewer.prototype.loadDocument = function (arguments, success, error) {
   exec(success, error, 'PDFTron', 'loadDocument', [arguments]);
 };
