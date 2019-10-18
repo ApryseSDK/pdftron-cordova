@@ -580,27 +580,27 @@
         NSDictionary *setPagePresentationModeActions = @{
                                          @"SinglePage":
                                              ^{
-                                                 [self.documentViewController.toolManager changeTool:[PTStickyNoteCreate class]];
+                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_single_page];
                                              },
                                          @"SingleContinous":
                                              ^{
-                                                 [self.documentViewController.toolManager changeTool:[PTFreeHandCreate class]];
+                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_single_continuous];
                                              },
                                          @"Facing":
                                              ^{
-                                                 [self.documentViewController.toolManager changeTool:[PTAnnotEditTool class]];
+                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing];
                                              },
                                          @"FacingContinous":
                                              ^{
-                                                 [self.documentViewController.toolManager changeTool:[PTPanTool class]];
+                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing_continuous;
                                              },
                                          @"FacingCover":
                                              ^{
-                                                 [self.documentViewController.toolManager changeTool:[PTTextHighlightCreate class]];
+                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing_cover];
                                              },
                                          @"FacingContinousCover":
                                              ^{
-                                                 [self.documentViewController.toolManager changeTool:[PTTextUnderlineCreate class]];
+                                                 [self.documentViewController.pdfViewCtrl setPagePresentationMode:e_trn_facing_continuous_cover];
                                              }
                                          };
         
