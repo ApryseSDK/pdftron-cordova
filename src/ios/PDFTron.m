@@ -592,7 +592,7 @@
                                              },
                                          @"FacingContinous":
                                              ^{
-                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_continuous;
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_continuous];
                                              },
                                          @"FacingCover":
                                              ^{
