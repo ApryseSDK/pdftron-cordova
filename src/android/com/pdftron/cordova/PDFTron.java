@@ -241,21 +241,21 @@ public class PDFTron extends CordovaPlugin {
             return;
         }
 //        if (mDocumentView.isUseCustomRect()) {
-            mDocumentView.setVisibility(View.VISIBLE);
-            if (mDocumentView.getParent() != null) {
-                return;
-            }
-            mDocumentView.setViewerConfig(getConfig());
-            if (webView.getView() instanceof WebView) {
-                WebView wv = (WebView) webView.getView();
-                if (wv.getParent() != null && wv.getParent() instanceof ViewGroup) {
-                    ((ViewGroup) wv.getParent()).addView(mDocumentView);
-                } else {
-                    wv.addView(mDocumentView);
-                }
+        mDocumentView.setVisibility(View.VISIBLE);
+        if (mDocumentView.getParent() != null) {
+            return;
+        }
+        mDocumentView.setViewerConfig(getConfig());
+        if (webView.getView() instanceof WebView) {
+            WebView wv = (WebView) webView.getView();
+            if (wv.getParent() != null && wv.getParent() instanceof ViewGroup) {
+                ((ViewGroup) wv.getParent()).addView(mDocumentView);
             } else {
-                throw new PDFNetException("CordovaWebView is not instanceof WebView", -1, "PDFTron.java", "attachDocumentViewerImpl", "Unable to add viewer.");
+                wv.addView(mDocumentView);
             }
+        } else {
+            throw new PDFNetException("CordovaWebView is not instanceof WebView", -1, "PDFTron.java", "attachDocumentViewerImpl", "Unable to add viewer.");
+        }
 //        } else {
 //            // simply launch the activity
 //            DocumentActivity.openDocument(cordova.getActivity(), mDocumentView.mDocumentUri, mDocumentView.mPassword, getConfig());
@@ -301,6 +301,13 @@ public class PDFTron extends CordovaPlugin {
                 mBuilder = mBuilder.showSaveCopyOption(false);
             } else if ("formToolsButton".equals(item)) {
                 mBuilder = mBuilder.showFormToolbarOption(false);
+            } else if ("moreItemsButton".equals(item)) {
+                mBuilder = mBuilder
+                        .showEditPagesOption(false)
+                        .showPrintOption(false)
+                        .showCloseTabOption(false)
+                        .showSaveCopyOption(false)
+                        .showFormToolbarOption(false);
             }
         }
         disableTools(args);
