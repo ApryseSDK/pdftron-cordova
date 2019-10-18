@@ -251,6 +251,7 @@ Hides multiple elements in the viewer, available options are:
 * shareButton
 * thumbnailsButton
 * listsButton
+* moreItemsButton
 * thumbnailSlider
 
 #### Parameters
@@ -389,6 +390,30 @@ string | true | N/A
 ```javascript
 // sets the current tool mode to freehand inking
 this.viewer.setToolMode('AnnotationCreateFreeHand');
+```
+
+### setPagePresentationMode(mode)
+Sets the page presentation mode.
+
+#### Parameters
+
+#### mode
+Name mode, available options are:
+- SinglePage
+- SingleContinous
+- Facing
+- FacingContinous
+- FacingCover
+- FacingContinousCover
+
+Type | Required | Default
+--- | --- | ---
+string | true | N/A
+
+#### Example
+```javascript
+// sets the viewer to single page continuous
+this.viewer.setPagePresentationMode('SingleContinous');
 ```
 
 ### loadDocument(documentPath)
