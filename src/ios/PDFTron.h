@@ -37,6 +37,8 @@
     
 -(void)setToolMode:(CDVInvokedUrlCommand*)command;
     
+-(void)setPagePresentationMode:(CDVInvokedUrlCommand*)command;
+
 -(void)loadDocument:(CDVInvokedUrlCommand*)command;
     
 -(void)NativeViewer:(CDVInvokedUrlCommand*)command;

@@ -566,6 +566,63 @@
     }
 }
 
+-(void)setPagePresentationMode:(CDVInvokedUrlCommand*)command
+{
+    
+    @try {
+        
+        NSArray* stringsArray = command.arguments;
+
+        
+        typedef void (^SetPagePresentationModeBlock)(void);
+        
+        
+        NSDictionary *setPagePresentationModeActions = @{
+                                         @"SinglePage":
+                                             ^{
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_single_page];
+                                             },
+                                         @"SingleContinous":
+                                             ^{
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_single_continuous];
+                                             },
+                                         @"Facing":
+                                             ^{
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing];
+                                             },
+                                         @"FacingContinous":
+                                             ^{
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_continuous];
+                                             },
+                                         @"FacingCover":
+                                             ^{
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_cover];
+                                             },
+                                         @"FacingContinousCover":
+                                             ^{
+                                                 [self.documentViewController.pdfViewCtrl SetPagePresentationMode:e_trn_facing_continuous_cover];
+                                             }
+                                         };
+        
+        
+        for(NSObject* item in stringsArray)
+        {
+            if( [item isKindOfClass:[NSString class]])
+            {
+                SetPagePresentationModeBlock block = setPagePresentationModeActions[item];
+                if (block)
+                {
+                    block();
+                }
+            }
+        }
+        
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+    } @catch (NSException *exception) {
+        [self sendErrorFromException:exception toCallbackId:command.callbackId];
+    }
+}
+
 -(void)messageChannel:(CDVInvokedUrlCommand*)command
 {
     self.javascriptCallbackBridge = command;
@@ -595,6 +652,8 @@
     {
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:self.documentViewController.openCommandCallbackID];
     }
+    
+    [self callJavascriptCallback:@"documentLoaded"];
 }
 
 -(void)documentViewController:(PTDocumentViewController *)documentViewController didFailToOpenDocumentWithError:(NSError *)error
