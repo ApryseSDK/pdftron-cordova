@@ -609,7 +609,7 @@
         {
             if( [item isKindOfClass:[NSString class]])
             {
-                SetPagePresentationModeBlock block = setToolActions[item];
+                SetPagePresentationModeBlock block = setPagePresentationModeActions[item];
                 if (block)
                 {
                     block();
