@@ -18,23 +18,14 @@
 */
 package org.apache.cordova;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +34,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * This class is the main Android activity that represents the Cordova
@@ -269,9 +268,11 @@ public class CordovaAppCompatActivity extends AppCompatActivity {
         if (this.appView == null) {
             return;
         }
-        // Force window to have focus, so application always
-        // receive user input. Workaround for some devices (Samsung Galaxy Note 3 at least)
-        this.getWindow().getDecorView().requestFocus();
+        if (! this.getWindow().getDecorView().hasFocus()) {
+            // Force window to have focus, so application always
+            // receive user input. Workaround for some devices (Samsung Galaxy Note 3 at least)
+            this.getWindow().getDecorView().requestFocus();
+        }
 
         this.appView.handleResume(this.keepRunning);
     }

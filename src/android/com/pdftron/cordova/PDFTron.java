@@ -3,9 +3,6 @@ package com.pdftron.cordova;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import com.pdftron.common.PDFNetException;
 import com.pdftron.pdf.PDFViewCtrl;
 import com.pdftron.pdf.config.ToolManagerBuilder;
 import com.pdftron.pdf.config.ViewerConfig;
-import com.pdftron.pdf.controls.DocumentActivity;
 import com.pdftron.pdf.controls.PdfViewCtrlTabFragment;
 import com.pdftron.pdf.tools.ToolManager;
 import com.pdftron.pdf.utils.Utils;
@@ -31,6 +27,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -169,8 +169,8 @@ public class PDFTron extends CordovaPlugin {
     private void createDocumentViewerImpl(@NonNull JSONObject options, @Nullable String viewerElement, CallbackContext callbackContext) {
         try {
             Activity currentActivity = cordova.getActivity();
-            if (currentActivity instanceof FragmentActivity) {
-                FragmentActivity fragmentActivity = (FragmentActivity) cordova.getActivity();
+            if (currentActivity instanceof AppCompatActivity) {
+                AppCompatActivity fragmentActivity = (AppCompatActivity) cordova.getActivity();
 
                 mDocumentView = new DocumentView(cordova.getContext());
                 mDocumentView.setSupportFragmentManager(fragmentActivity.getSupportFragmentManager());
@@ -240,7 +240,6 @@ public class PDFTron extends CordovaPlugin {
         if (mDocumentView == null) {
             return;
         }
-//        if (mDocumentView.isUseCustomRect()) {
         mDocumentView.setVisibility(View.VISIBLE);
         if (mDocumentView.getParent() != null) {
             return;
@@ -256,10 +255,6 @@ public class PDFTron extends CordovaPlugin {
         } else {
             throw new PDFNetException("CordovaWebView is not instanceof WebView", -1, "PDFTron.java", "attachDocumentViewerImpl", "Unable to add viewer.");
         }
-//        } else {
-//            // simply launch the activity
-//            DocumentActivity.openDocument(cordova.getActivity(), mDocumentView.mDocumentUri, mDocumentView.mPassword, getConfig());
-//        }
     }
 
     private void disableElements(JSONArray args, CallbackContext callbackContext) {

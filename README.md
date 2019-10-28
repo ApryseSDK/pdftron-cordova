@@ -68,6 +68,8 @@ The plugin can be used to present the PDF viewer either in full screen or over a
 1. Add your PDFTron license key to `MyApp/platforms/android/gradle.properties` file.
 
     ```
+    android.useAndroidX=true
+    android.enableJetifier=true
     PDFTRON_LICENSE_KEY=INSERT_COMMERCIAL_LICENSE_KEY_HERE_AFTER_PURCHASE
     ```
 
