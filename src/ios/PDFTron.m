@@ -643,6 +643,33 @@
     }
 }
 
+-(void)save:(CDVInvokedUrlCommand *)command
+{
+    [self.documentViewController saveDocument:e_ptincremental completionHandler:^(BOOL success) {
+        NSString* filePath = self.documentViewController.coordinatedDocument.fileURL.path;
+        
+        if (!filePath )
+        {
+            filePath = [self.documentViewController.document GetFileName];
+        }
+        
+        CDVPluginResult* pluginResult;
+        
+        if( success )
+        {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:filePath];
+        }
+        else
+        {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:filePath];
+        }
+        
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        
+    }];
+
+}
+
 
 #pragma PTDocumentViewControllerDelegate
 

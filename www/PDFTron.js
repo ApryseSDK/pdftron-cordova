@@ -65,4 +65,8 @@ NativeViewer.prototype.showDocumentViewer = function (success, error) {
   exec(success, error, 'PDFTron', 'showDocumentViewer', []);
 };
 
+NativeViewer.prototype.save = function (success, error) {
+  exec(success, error, 'PDFTron', 'save', []);
+};
+
 module.exports = new PDFTron();

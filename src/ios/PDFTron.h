@@ -45,6 +45,6 @@
     
 -(void)messageChannel:(CDVInvokedUrlCommand*)command;
     
-
+-(void)save:(CDVInvokedUrlCommand*)command;
 
 @end
