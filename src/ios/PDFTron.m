@@ -160,7 +160,7 @@
             // show as a subview
             [self overlayDocumentViewerOnDivID:viewerID viaCommand:command];
         }
-        else if( viewerID )
+        else if( !viewerID )
         {
             // present the document
             [self showDocumentViewer:command];
