@@ -55,6 +55,7 @@ public class PDFTron extends CordovaPlugin {
     public static final String Key_setToolMode = "setToolMode";
     public static final String Key_setPagePresentationMode = "setPagePresentationMode";
     public static final String Key_loadDocument = "loadDocument";
+    public static final String Key_save = "save";
     public static final String Key_NativeViewer = "NativeViewer";
 
     // nav
@@ -94,6 +95,8 @@ public class PDFTron extends CordovaPlugin {
             }
             addDocumentViewer(options, viewerElement, callbackContext);
             return true;
+        } else if (Key_save.equals(action)) {
+            save(callbackContext);
         } else if (Key_showDocumentViewer.equals(action)) {
             showDocumentViewer(callbackContext);
             return true;
@@ -491,6 +494,23 @@ public class PDFTron extends CordovaPlugin {
                 try {
                     attachDocumentViewerImpl();
                     callbackContext.success();
+                } catch (Exception ex) {
+                    callbackContext.error(ex.getMessage());
+                }
+            }
+        });
+    }
+
+    private void save(CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(() -> {
+            if (mDocumentView != null) {
+                try {
+                    if (mDocumentView.mPdfViewCtrlTabHostFragment != null && mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment() != null) {
+                        mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().save(false, true, true);
+                        callbackContext.success(mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().getFilePath());
+                    } else {
+                        callbackContext.error("Saving failed.");
+                    }
                 } catch (Exception ex) {
                     callbackContext.error(ex.getMessage());
                 }
