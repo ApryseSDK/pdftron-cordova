@@ -502,20 +502,12 @@ public class PDFTron extends CordovaPlugin {
     }
 
     private void save(CallbackContext callbackContext) {
-        cordova.getActivity().runOnUiThread(() -> {
-            if (mDocumentView != null) {
-                try {
-                    if (mDocumentView.mPdfViewCtrlTabHostFragment != null && mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment() != null) {
-                        mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().save(false, true, true);
-                        callbackContext.success(mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().getFilePath());
-                    } else {
-                        callbackContext.error("Saving failed.");
-                    }
-                } catch (Exception ex) {
-                    callbackContext.error(ex.getMessage());
-                }
-            }
-        });
+        if (mDocumentView != null && mDocumentView.mPdfViewCtrlTabHostFragment != null && mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment() != null) {
+            mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().save(false, true, true);
+            callbackContext.success(mDocumentView.mPdfViewCtrlTabHostFragment.getCurrentPdfViewCtrlFragment().getFilePath());
+        } else {
+            callbackContext.error("Saving failed.");
+        }
     }
 
     private ViewerConfig getConfig() {
