@@ -446,6 +446,20 @@ If a `boundingRect` is defined, the viewer will be displayed on top of the web c
 this.viewer.showDocumentViewer();
 ```
 
+### save
+Saves the document.
+
+### Example
+
+```javascript
+this.viewer.save(function (s) {
+    // "s" is the location of the file on the device
+    console.log(s);
+}, function (e) {
+    console.log("Error saving file " + e);
+});
+```
+
 ## Contributing
 See [Contributing](./CONTRIBUTING.md)
 
