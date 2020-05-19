@@ -160,15 +160,12 @@
             // show as a subview
             [self overlayDocumentViewerOnDivID:viewerID viaCommand:command];
         }
-        else if( !viewerID )
+        else
         {
             // present the document
             [self showDocumentViewer:command];
         }
-        else
-        {
-            [self sendPluginResultOKToCallbackId:command.callbackId];
-        }
+
         
     } @catch (NSException *exception) {
         [self sendErrorFromException:exception toCallbackId:command.callbackId];
