@@ -1,6 +1,6 @@
 # pdftron-cordova
 
-## This project is no longer in development. If you are looking for cross-platform solution, check out [React Native](https://github.com/PDFTron/pdftron-react-native) or [Flutter](https://github.com/PDFTron/pdftron-flutter). If you are looking to add to your current Cordova/Ionic project, check out the [WebViewer sample](https://github.com/PDFTron/webviewer-cordova-sample).
+## This project is no longer being maintained or developed. You can use this source code as is but there is limited support for it.  If you are looking for a cross-platform native mobile solution, check out our [React Native solution](https://github.com/PDFTron/pdftron-react-native) or [Flutter solution](https://github.com/PDFTron/pdftron-flutter). If you are looking to add to WebViewer to your current Cordova/Ionic project, check out our [WebViewer Cordova sample](https://github.com/PDFTron/webviewer-cordova-sample).
 
 This repository contains PDFTron's native plugin for Cordova/Ionic. The plugin exposes a javascript interface for a full-featured PDF viewer and annotator with full native performance. 
 
